@@ -1,0 +1,8 @@
+*.json
+CMakeLists.txt.user
+Makefile
+.cache/
+/build
+CMakeCache.txt
+*.cmake
+*.kdev4

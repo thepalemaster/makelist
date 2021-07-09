@@ -1,0 +1,4 @@
+Сгенерированный список
+aaBbcc(special).text
+aaBbcc.txt
+aBbcc.txt
