@@ -1,21 +1,22 @@
-#include <QDebug>
 #include <QFile>
 #include <QTextStream>
+#include <cstdio>
 
 #include "condition_from_args.h"
 #include "scan_dir.h"
 
 int main(int argc, char* argv[]) {
+    QTextStream output (stdout);
     std::vector<ConditionElemet> conditions;
     conditions.reserve(argc / 2);
     conditionsFromArgs(argc, argv, conditions);
     if (conditions.size() == 0) {
-        qDebug() << "Параметры не заданы!!\n";
+        output << QString("Параметры не заданы!!\n");
         return 2;
     }
     QFile file("Список.txt");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qDebug() << "Не удалось открыть файл!\n";
+        output << QString("Не удалось открыть файл!\n");
         return 1;
     }
     QTextStream stream(&file);
@@ -55,7 +56,6 @@ int main(int argc, char* argv[]) {
         }};
     stream << QString("Сгенерированный список\n");
     scanDir(QDir::currentPath(), checkCondition, writeToFile);
-
     file.close();
     return 0;
 }

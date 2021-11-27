@@ -98,7 +98,6 @@ std::function<bool(QString&)> lambdaFactory(Commands command, QString& param,
             };
             break;
         case (Commands::REGEXP):
-            // QRegExp regular{QString(param), sensetive};
             func = [regular = QRegExp(param, sensetive)](const QString& line) {
                 return line.contains(regular);
             };
@@ -172,7 +171,7 @@ void conditionsFromArgs(int argc, char* argv[],
             prefix = getPrefixData(argv[i]);
             if (!prefix) continue;
             command =
-                getCommand(argv[i] + prefix->length);  //адресная арифметика
+                getCommand(argv[i] + prefix->length);  //address arithmetic
             if (command == Commands::NONE) continue;
             option = false;
         } else {
